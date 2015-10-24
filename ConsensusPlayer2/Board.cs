@@ -63,5 +63,20 @@ namespace ConsensusPlayer2
             }
             return squares[x + y * 8].ToLower();
         }
+
+evaluate(Board b, String player)
+{
+    int us = 0;
+    int them = 0;
+    int empty = 0;
+    for ( int i=0; i<64; i++)
+    {
+	if ( player == squares[i] ) us++;
+	else if ( "-" == squares[i] ) empty++;
+	else them++;
+    }
+    return us-them;
+}
+
     }
 }
