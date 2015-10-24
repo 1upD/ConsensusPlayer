@@ -71,20 +71,49 @@ namespace ConsensusPlayer2
         private Drd26Result minimaxVal(Board b, int d, string color)
         {    // d is depth
             int bestVal = 0;
-            int bestMove = 0;
             if (d == 0)
                 return new Drd26Result(0, b.evaluate(Color));
+            bool Max = true;
             if (color == "b")
             {     //TOP is MAX
                 bestVal = -1000000;
-                minOrMax(b, d, ref bestVal, ref bestMove, "b", true);
             }
             else
             {  // similarly for BOTTOM’s move
                 //BOTTOM is MIN
                 bestVal = 1000000;
-                minOrMax(b, d, ref bestVal, ref bestMove, "w", false);
-                    
+                Max = false;
+                }
+            string opponent = "b";
+            if (color == "b")
+            {
+                opponent = "w";
+            }
+
+            int bestMove = 0;
+            bool[] validMoves = b.ValidMoves(color);
+            // Make sure the default value is valid
+            for (int i = 0; i < 64; i++)
+            {
+                if (validMoves[i])
+                {
+                    bestMove = i;
+                    break;
+                } 
+            }
+            // Loop through all possible moves
+            for (int move = 0; move < 64; move++)
+                {
+                    if (validMoves[move])
+                    {
+                        Board b1 = b.move(move, color); // Make a copy of the move by moving
+                        int val = minimaxVal(b1, d - 1, opponent).getVal();   //find its value
+                        if ((val > bestVal && Max) || (val < bestVal && !Max))
+                        {        //remember if best
+                            bestVal = val;
+                            bestMove = move;
+                        }
+                    }
                 }
 
             return new Drd26Result(bestMove, bestVal);
@@ -92,25 +121,7 @@ namespace ConsensusPlayer2
 
         private void minOrMax(Board b, int d, ref int bestVal, ref int bestMove, String color, bool Max)
         {
-            string opponent = "b";
-            if (color == "b")
-            {
-                opponent = "w";
-            }
-            bool[] validMoves = b.ValidMoves(color);
-            for (int move = 0; move < 64; move++)
-            {
-                if (validMoves[move])
-                {
-                    Board b1 = b.move(move, color); // Make a copy of the move by moving
-                    int val = minimaxVal(b1, d - 1, opponent).getVal();   //find its value
-                    if ((val > bestVal && Max) || (val < bestVal && !Max))
-                    {        //remember if best
-                        bestVal = val;
-                        bestMove = move;
-                    }
-                }
-            }
+
         }
 
 
