@@ -17,7 +17,6 @@ namespace ConsensusPlayer2
             {
                 var input = System.IO.File.ReadAllText(@"input.json");
                 var boardstring = System.Text.RegularExpressions.Regex.Match(input, @"\{.*\}").Value;
-                Console.Write("Hello");
                 ConsensusPlayer player = new ConsensusPlayer();
                 Board board = JsonConvert.DeserializeObject<Board>(boardstring);
                 for (int i = 0; i < args.Length; i++)
@@ -41,38 +40,14 @@ namespace ConsensusPlayer2
 
         public int chooseMove(Board board)
         {
-            /*bool[] moves = board.ValidMoves(Color);
-            int bestMove = 0;
-                      int bestScore = -9999999;
-                        for (int i = 0; i < 64; i++)
-                        {
-                            if (moves[i])
-                            {
-                                Board newBoard = board.move(i, Color);
-                                int score = board.evaluate(Color);
-                                if (score > bestScore)
-                                {
-                                    bestScore = score;
-                                    bestMove = i;
-                                }
-                            }
-                        }
-             */
-            Drd26Result best = minimaxVal(board, 4, Color);
-            return best.getMove();
+            return minimaxVal(board, 7, Color).getMove();
         }
 
-// Mancala stuff
-
-        private int myLimit;
-        private bool timeUp;
-        private int turn;
-
-        private Drd26Result minimaxVal(Board b, int d, string color)
+        private Result minimaxVal(Board b, int d, string color)
         {    // d is depth
             int bestVal = 0;
             if (d == 0)
-                return new Drd26Result(0, b.evaluate(Color));
+                return new Result(0, b.evaluate(Color));
             bool Max = true;
             if (color == "b")
             {     //TOP is MAX
@@ -116,21 +91,16 @@ namespace ConsensusPlayer2
                     }
                 }
 
-            return new Drd26Result(bestMove, bestVal);
-        }
-
-        private void minOrMax(Board b, int d, ref int bestVal, ref int bestMove, String color, bool Max)
-        {
-
+            return new Result(bestMove, bestVal);
         }
 
 
 //Class to hold returned moves and values
-public class Drd26Result
+public class Result
 {
     private int myMove;
     private int myVal;
-    public Drd26Result(int move, int val)
+    public Result(int move, int val)
     {
         myMove = move;
         myVal = val;
@@ -145,9 +115,6 @@ public class Drd26Result
         return myMove;
     }
 }
-
-// End of Mancala stuff
-
 
     }
 }

@@ -5,3 +5,4 @@ c:\users\1upde_000\documents\visual studio 2013\Projects\ConsensusPlayer2\Consen
 c:\users\1upde_000\documents\visual studio 2013\Projects\ConsensusPlayer2\ConsensusPlayer2\bin\Debug\Newtonsoft.Json.xml
 c:\users\1upde_000\documents\visual studio 2013\Projects\ConsensusPlayer2\ConsensusPlayer2\obj\Debug\ConsensusPlayer2.exe
 c:\users\1upde_000\documents\visual studio 2013\Projects\ConsensusPlayer2\ConsensusPlayer2\obj\Debug\ConsensusPlayer2.pdb
+C:\Users\1upde_000\Documents\Visual Studio 2013\Projects\ConsensusPlayer2\ConsensusPlayer2\obj\Debug\ConsensusPlayer2.csprojResolveAssemblyReference.cache
