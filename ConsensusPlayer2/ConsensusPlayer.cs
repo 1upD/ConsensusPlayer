@@ -18,6 +18,14 @@ namespace ConsensusPlayer2
         }
         public int chooseMove(Board board)
         {
+            bool[] moves = board.ValidMoves("w");
+            for (int i = 0; i < 64; i++)
+            {
+                if (moves[i])
+                {
+                    return i;
+                }
+            }
             return 0;
         }
     }

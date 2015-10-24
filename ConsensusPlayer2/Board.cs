@@ -14,31 +14,30 @@ namespace ConsensusPlayer2
 
         public bool[] ValidMoves(string player)
         {
-            int[] directions = { -9, -8, -7, -1, 1, 7, 8, 9 };
             bool[] valids = Enumerable.Repeat(false, 64).ToArray();
-            for (int i = 0; i < 64; i++)
+            for (int x = 0; x < 8; x++)
             {
-                if (isTaken(i))
-                {
-                    valids[i] = false;
-                }
-                else
-                {
-                    foreach (int direction in directions)
+                for (int y = 0; y < 8; y++ )
+                    if (!isTaken(x, y))
                     {
-                        valids[i] = adjacentOpponent(i, direction, player);
+                        for (int i = -1; i < 2; i++)
+                        {
+                            for (int j = -1; i < 2; i++)
+                            {
+                                valids[i] = adjacentOpponent(x, y, i, j, player);
+                            }
+                        }
                     }
-                }
             }
             return valids;
         }
 
-        private bool isTaken(int i)
+        private bool isTaken(int x, int y)
         {
-            return squares[i] != "-";
+            return getSpace(x, y) != "-";
         }
 
-        private bool adjacentOpponent(int location, int direction, string player)
+        private bool adjacentOpponent(int location, int direction, string player, int length=0)
         {
             if (squares[location + direction] == "-")
             {
@@ -46,10 +45,30 @@ namespace ConsensusPlayer2
             }
             if (squares[location + direction] == player)
             {
-                return true;
+                return length>0;
             }
-            return adjacentOpponent(location + direction, direction, player);
+            return adjacentOpponent(location + direction, direction, player, length+1);
         }
 
+        private bool adjacentOpponent(int x, int y, int dx, int dy, string player, int length = 0)
+        {
+            if (getSpace(x + dx, y + dy) == "-")
+            {
+                return false;
+            }
+            if (getSpace(x + dx, y + dy) == player)
+            {
+                return length > 0;
+            }
+            return adjacentOpponent(x, y, dx, dy, player, length + 1);
+        }
+
+        public string getSpace(int x, int y){
+            if (x > 7 || x < 0 || y > 7 || y < 0)
+            {
+                return "I";
+            }
+            return squares[x + y * 8];
+        }
     }
 }
