@@ -11,5 +11,11 @@ namespace ConsensusPlayer2
     public int width { get; set; }
     public int height {get; set;}
     public string[] squares { get; set; }
+
+    public int[] ValidMoves()
+    {
+        return null;
+    }
+
     }
 }
