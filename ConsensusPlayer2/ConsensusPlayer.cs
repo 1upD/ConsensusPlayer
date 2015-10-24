@@ -40,7 +40,7 @@ namespace ConsensusPlayer2
 
         public int chooseMove(Board board)
         {
-            return minimaxVal(board, 7, Color).getMove();
+            return minimaxVal(board, 6, Color).getMove();
         }
 
         private Result minimaxVal(Board b, int d, string color)
@@ -65,22 +65,15 @@ namespace ConsensusPlayer2
                 opponent = "w";
             }
 
-            int bestMove = 0;
-            bool[] validMoves = b.ValidMoves(color);
+            List<int> validMoves = b.ValidMovesList(color);
             // Make sure the default value is valid
-            for (int i = 0; i < 64; i++)
+            int bestMove = 0;
+            if (validMoves.Count > 0)
             {
-                if (validMoves[i])
-                {
-                    bestMove = i;
-                    break;
-                } 
+                bestMove = validMoves[0];
             }
             // Loop through all possible moves
-            for (int move = 0; move < 64; move++)
-                {
-                    if (validMoves[move])
-                    {
+            foreach(int move in validMoves){
                         Board b1 = b.move(move, color); // Make a copy of the move by moving
                         int val = minimaxVal(b1, d - 1, opponent).getVal();   //find its value
                         if ((val > bestVal && Max) || (val < bestVal && !Max))
@@ -89,7 +82,6 @@ namespace ConsensusPlayer2
                             bestMove = move;
                         }
                     }
-                }
 
             return new Result(bestMove, bestVal);
         }

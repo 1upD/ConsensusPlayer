@@ -38,6 +38,35 @@ namespace ConsensusPlayer2
             return valids;
         }
 
+        public List<int> ValidMovesList(string player)
+        {
+            List<int> valids = new List<int>();
+            for (int x = 0; x < 8; x++)
+            {
+                for (int y = 0; y < 8; y++)
+                    if (!isTaken(x, y))
+                    {
+                        for (int i = -1; i < 2; i++)
+                        {
+                            for (int j = -1; j < 2; j++)
+                            {
+                                if (!(i == 0 && j == 0))
+                                {
+                                    if (!valids.Contains(x + y * 8))
+                                    {
+                                        if (adjacentOpponent(x, y, i, j, player))
+                                        {
+                                            valids.Add(x + y * 8);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+            }
+            return valids;
+        }
+
         private bool isTaken(int x, int y)
         {
             return getSpace(x, y) != "-";
