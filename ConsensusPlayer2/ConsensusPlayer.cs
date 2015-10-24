@@ -48,6 +48,7 @@ namespace ConsensusPlayer2
             {
                 if (moves[i])
                 {
+                    Board newBoard = board.move(i, Color);
                     int score = board.evaluate(Color);
                     if (score > bestScore)
                     {
