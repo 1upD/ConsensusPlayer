@@ -40,14 +40,14 @@ namespace ConsensusPlayer2
 
         public int chooseMove(Board board)
         {
-            return minimaxVal(board, 5, Color).getMove();
+            return minimaxVal(board, 4, Color).getMove();
         }
 
         private Result minimaxVal(Board b, int d, string color)
         {    // d is depth
             int bestVal = 0;
             if (d == 0)
-                return new Result(0, b.evaluate(Color));
+                return new Result(0, b.evaluate("b"));
             bool Max = true;
             if (color == "b")
             {     //TOP is MAX

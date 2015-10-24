@@ -11,7 +11,7 @@ namespace ConsensusPlayer2
         public int width { get; set; }
         public int height { get; set; }
         public string[] squares { get; set; }
-
+        
         public bool[] ValidMoves(string player)
         {
             bool[] valids = Enumerable.Repeat(false, 64).ToArray();
