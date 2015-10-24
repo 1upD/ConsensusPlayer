@@ -17,7 +17,7 @@ namespace ConsensusPlayer2
             {
                 var input = System.IO.File.ReadAllText(@"input.json");
                 var boardstring = System.Text.RegularExpressions.Regex.Match(input, @"\{.*\}").Value;
-                System.IO.File.WriteAllText(@"args.txt", boardstring);
+                Console.Write("Hello");
                 ConsensusPlayer player = new ConsensusPlayer();
                 Board board = JsonConvert.DeserializeObject<Board>(boardstring);
                 for (int i = 0; i < args.Length; i++)
@@ -42,14 +42,21 @@ namespace ConsensusPlayer2
         public int chooseMove(Board board)
         {
             bool[] moves = board.ValidMoves(Color);
+            int bestMove = 0;
+            int bestScore = -9999999;
             for (int i = 0; i < 64; i++)
             {
                 if (moves[i])
                 {
-                    return i;
+                    int score = board.evaluate(Color);
+                    if (score > bestScore)
+                    {
+                        bestScore = score;
+                        bestMove = i;
+                    }
                 }
             }
-            return 0;
+            return bestMove;
         }
     }
 }
