@@ -40,7 +40,7 @@ namespace ConsensusPlayer2
 
         public int chooseMove(Board board)
         {
-            return minimaxVal(board, 6, Color).getMove();
+            return minimaxVal(board, 5, Color).getMove();
         }
 
         private Result minimaxVal(Board b, int d, string color)

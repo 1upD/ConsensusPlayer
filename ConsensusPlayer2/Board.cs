@@ -154,6 +154,59 @@ namespace ConsensusPlayer2
 	        else if ( "-" == squares[i] ) empty++;
 	        else them++;
         }
+        if (squares[0] == player)
+        {
+            us++;
+        }
+        else if (squares[0] == "-")
+        {
+            empty++;
+        }
+        else
+        {
+            them++;
+        }
+
+        if (squares[7] == player)
+        {
+            us++;
+        }
+        else if (squares[7] == "-")
+        {
+            empty++;
+        }
+        else
+        {
+            them++;
+        }
+
+        if (squares[56] == player)
+        {
+            us++;
+        }
+        else if (squares[56] == "-")
+        {
+            empty++;
+        }
+        else
+        {
+            them++;
+        }
+
+        if (squares[63] == player)
+        {
+            us++;
+        }
+        else if (squares[63] == "-")
+        {
+            empty++;
+        }
+        else
+        {
+            them++;
+        }
+
+
         return us-them;
 }
 
