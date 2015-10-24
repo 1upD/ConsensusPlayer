@@ -22,9 +22,15 @@ namespace ConsensusPlayer2
                     {
                         for (int i = -1; i < 2; i++)
                         {
-                            for (int j = -1; i < 2; i++)
+                            for (int j = -1; j < 2; j++)
                             {
-                                valids[i] = adjacentOpponent(x, y, i, j, player);
+                                if (!(i == 0 && j == 0))
+                                {
+                                    if (!valids[x + y * 8])
+                                    {
+                                        valids[x + y * 8] = adjacentOpponent(x, y, i, j, player);
+                                    }
+                                }
                             }
                         }
                     }
@@ -37,22 +43,9 @@ namespace ConsensusPlayer2
             return getSpace(x, y) != "-";
         }
 
-        private bool adjacentOpponent(int location, int direction, string player, int length=0)
-        {
-            if (squares[location + direction] == "-")
-            {
-                return false;
-            }
-            if (squares[location + direction] == player)
-            {
-                return length>0;
-            }
-            return adjacentOpponent(location + direction, direction, player, length+1);
-        }
-
         private bool adjacentOpponent(int x, int y, int dx, int dy, string player, int length = 0)
         {
-            if (getSpace(x + dx, y + dy) == "-")
+            if (getSpace(x + dx, y + dy) == "-" || getSpace(x + dx, y + dy) == "I")
             {
                 return false;
             }
@@ -60,7 +53,7 @@ namespace ConsensusPlayer2
             {
                 return length > 0;
             }
-            return adjacentOpponent(x, y, dx, dy, player, length + 1);
+            return adjacentOpponent(x + dx, y + dy, dx, dy, player, length + 1);
         }
 
         public string getSpace(int x, int y){
@@ -68,7 +61,7 @@ namespace ConsensusPlayer2
             {
                 return "I";
             }
-            return squares[x + y * 8];
+            return squares[x + y * 8].ToLower();
         }
     }
 }
