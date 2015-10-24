@@ -1,0 +1,8 @@
+c:\users\1upde_000\documents\visual studio 2013\Projects\ConsensusPlayer2\ConsensusPlayer2\bin\Debug\ConsensusPlayer2.exe.config
+c:\users\1upde_000\documents\visual studio 2013\Projects\ConsensusPlayer2\ConsensusPlayer2\bin\Debug\ConsensusPlayer2.exe
+c:\users\1upde_000\documents\visual studio 2013\Projects\ConsensusPlayer2\ConsensusPlayer2\bin\Debug\ConsensusPlayer2.pdb
+c:\users\1upde_000\documents\visual studio 2013\Projects\ConsensusPlayer2\ConsensusPlayer2\bin\Debug\Newtonsoft.Json.dll
+c:\users\1upde_000\documents\visual studio 2013\Projects\ConsensusPlayer2\ConsensusPlayer2\bin\Debug\Newtonsoft.Json.xml
+c:\users\1upde_000\documents\visual studio 2013\Projects\ConsensusPlayer2\ConsensusPlayer2\obj\Debug\ConsensusPlayer2.csprojResolveAssemblyReference.cache
+c:\users\1upde_000\documents\visual studio 2013\Projects\ConsensusPlayer2\ConsensusPlayer2\obj\Debug\ConsensusPlayer2.exe
+c:\users\1upde_000\documents\visual studio 2013\Projects\ConsensusPlayer2\ConsensusPlayer2\obj\Debug\ConsensusPlayer2.pdb
